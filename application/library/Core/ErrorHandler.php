@@ -155,7 +155,7 @@ class Core_ErrorHandler {
 				foreach ( $_trace as $error ) {
 					$logs[] = "[" . self::$errLevelMap [$error ['type']] . ":{$error['type']}]] {$error['message']} file:{$error['file']} {$error['line']}行";
 				}
-				$content = preg_replace('/\}$/', ',logs:'.json_encode($logs).'}', $content);
+// 				$content = preg_replace('/\}$/', ',logs:'.json_encode($logs).'}', $content);
 			}else{
 				foreach ( $_trace as $error ) {
 					echo "<br/>[" . self::$errLevelMap [$error ['type']] . ":{$error['type']}]] {$error['message']} file:{$error['file']} {$error['line']}行";
