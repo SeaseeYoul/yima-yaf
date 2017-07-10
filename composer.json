@@ -1,0 +1,17 @@
+{
+    "name": "codejm/yaf_base",
+    "description": "yaf_base",
+    "minimum-stability": "stable",
+    "license": "",
+    "authors": [
+        {
+            "name": "codejm",
+            "email": "codejm@163.com"
+        }
+    ],
+    "require": {
+		"php": ">=5.3.0",
+		"twig/twig": ">=1.9.1",
+        "nikic/php-parser":"2.1.1"
+    }
+}
