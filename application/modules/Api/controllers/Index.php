@@ -2,7 +2,8 @@
 
 class IndexController extends \Core_ApiBase  {
     public function indexAction() {
-        echo 111;exit;
+        $this->api_success(array('Ë§Ë§µÄ'));
+        exit;
     }
     
 }
