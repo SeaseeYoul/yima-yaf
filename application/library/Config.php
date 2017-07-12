@@ -17,6 +17,7 @@ class Config {
 	// 加载配置文件
 	public static function load(){
 	    self::$config =  Yaf_Application::app()->getConfig()->toArray();
+	    self::$config = array_merge(self::$config,(array) include APP_PATH."conf/common.config.php");
 	}
 
 }

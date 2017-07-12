@@ -105,64 +105,64 @@ class Core_ApiBase extends \Yaf_Controller_Abstract  {
      * 初始化函数
      */
     public function init() { 
-         // 设置请求开始时间
-         $this->request_start_time = microtime(true);
+//          // 设置请求开始时间
+//          $this->request_start_time = microtime(true);
         
-         // 合并请求参数
-         $get = Tools_help::filter($_GET);
-         $post = Tools_help::filter($_POST);
-         $this->param = array_merge($get, $post);
+//          // 合并请求参数
+//          $get = Tools_help::filter($_GET);
+//          $post = Tools_help::filter($_POST);
+//          $this->param = array_merge($get, $post);
          
-        // 验证必传参数
-        $client = isset($this->param['client']) ? trim($this->param['client']) : '' ;
-        if ( !$client ) {
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
-        }
-        if ( substr($client, 0, 4)!='ios_' && substr($client, 0, 8)!='android_' && substr($client, 0, 3)!='h5_' && substr($client, 0, 3)!='wx_' ) {
-            // 必须是ios_开头或者是android_开头的标识或者h5_开头的标识
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
-        }
-        
-        // 客户端唯一编号
-        $this->m_client = str_replace(array('ios_', 'android_', 'h5_', 'wx_'), array('', '', '', ''), $client);
-        if ( !$this->m_client ) {
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
-        }
-        
-        // 客户端类型
-        if ( substr($client, 0, 4)=='ios_' ) {
-            $this->m_client_type = 'ios';
-        }
-        elseif ( substr($client, 0, 8)=='android_' ){
-            $this->m_client_type = 'android';
-        }
-        elseif ( substr($client, 0, 3)=='h5_' ){
-            $this->m_client_type = 'h5';
-        }
-        elseif ( substr($client, 0, 3)=='wx_' ){
-            $this->m_client_type = 'wx';
-        }
-        
-        // 版本号
-        $version = isset($this->param['version']) ? trim($this->param['version']) : '' ;
-        if ( !$version ) {
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
-        }
-        if ( substr($version, 0, 4)!='ios_' && substr($version, 0, 8)!='android_' && substr($version, 0, 3)!='h5_' && substr($client, 0, 3)!='wx_' ) {
-            // 必须是ios_开头或者是android_开头的标识或者h5_开头的标识
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
-        }
-        $this->m_version = str_replace(array('ios_', 'android_', 'h5_', 'wx_'), array('', '', '',''), $version);
-        if ( !$this->m_version ) {
-            $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
-        }
-        
-        // 验证登录 , 没有登录直接返回'需要登录'
-//         $not_login_module_action = C('NOT_LOGIN_MODULE_ACTION');
-//         if ( !$not_login_module_action || !isset($not_login_module_action[MODULE_NAME]) || !in_array(ACTION_NAME, $not_login_module_action[MODULE_NAME]) ) {
-//             $this->get_login_user(true);	
-//             //$this->user_login_log_redis();
+//         // 验证必传参数
+//         $client = isset($this->param['client']) ? trim($this->param['client']) : '' ;
+//         if ( !$client ) {
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
 //         }
+//         if ( substr($client, 0, 4)!='ios_' && substr($client, 0, 8)!='android_' && substr($client, 0, 3)!='h5_' && substr($client, 0, 3)!='wx_' ) {
+//             // 必须是ios_开头或者是android_开头的标识或者h5_开头的标识
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
+//         }
+        
+//         // 客户端唯一编号
+//         $this->m_client = str_replace(array('ios_', 'android_', 'h5_', 'wx_'), array('', '', '', ''), $client);
+//         if ( !$this->m_client ) {
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'client'));
+//         }
+        
+//         // 客户端类型
+//         if ( substr($client, 0, 4)=='ios_' ) {
+//             $this->m_client_type = 'ios';
+//         }
+//         elseif ( substr($client, 0, 8)=='android_' ){
+//             $this->m_client_type = 'android';
+//         }
+//         elseif ( substr($client, 0, 3)=='h5_' ){
+//             $this->m_client_type = 'h5';
+//         }
+//         elseif ( substr($client, 0, 3)=='wx_' ){
+//             $this->m_client_type = 'wx';
+//         }
+        
+//         // 版本号
+//         $version = isset($this->param['version']) ? trim($this->param['version']) : '' ;
+//         if ( !$version ) {
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
+//         }
+//         if ( substr($version, 0, 4)!='ios_' && substr($version, 0, 8)!='android_' && substr($version, 0, 3)!='h5_' && substr($client, 0, 3)!='wx_' ) {
+//             // 必须是ios_开头或者是android_开头的标识或者h5_开头的标识
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
+//         }
+//         $this->m_version = str_replace(array('ios_', 'android_', 'h5_', 'wx_'), array('', '', '',''), $version);
+//         if ( !$this->m_version ) {
+//             $this->api_error(ErrorConfig::$ERROR_REQUEST_REQUIRED_PARAMS_ERROR, array('p'=>'version'));
+//         }
+        
+//         // 验证登录 , 没有登录直接返回'需要登录'
+// //         $not_login_module_action = C('NOT_LOGIN_MODULE_ACTION');
+// //         if ( !$not_login_module_action || !isset($not_login_module_action[MODULE_NAME]) || !in_array(ACTION_NAME, $not_login_module_action[MODULE_NAME]) ) {
+// //             $this->get_login_user(true);	
+// //             //$this->user_login_log_redis();
+// //         }
         
     }
     
