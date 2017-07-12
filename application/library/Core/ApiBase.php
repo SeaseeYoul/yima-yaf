@@ -344,8 +344,6 @@ class Core_ApiBase extends \Yaf_Controller_Abstract  {
         );
         
         $result = json_encode($ret);
-        var_dump($ret);
-        echo $result;die;
         if ( isset($_REQUEST['jsonp_callback']) && $_REQUEST['jsonp_callback'] ) {
             header('Content-Type:application/json; charset=utf-8');
             echo $_REQUEST['jsonp_callback'].'('.$result.');';
