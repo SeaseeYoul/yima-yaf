@@ -10,6 +10,7 @@
 // 常用目录定义
 /* {{{ */
 date_default_timezone_set('PRC');
+error_reporting(0);
 header('Content-type: text/html; charset=utf-8');
 define('DS', '/');
 define('PUBLIC_PATH', dirname(__FILE__).DS);

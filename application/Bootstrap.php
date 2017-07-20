@@ -6,6 +6,10 @@
  *      初始化, 引导程序
  *      $Id: Bootstrap.php 2017-07-04
  */
+ 
+Yaf_loader::import("/vendor/autoload.php");
+use Illuminate\Container\Container;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Bootstrap extends \Yaf_Bootstrap_Abstract {
 
@@ -20,7 +24,7 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract {
     // 错误处理
     public function _initError(\Yaf_Dispatcher $dispatcher) {
         Core_ErrorHandler::init();
-        error_reporting(0);
+
     }/*}}}*/
 
     // 注册插件
@@ -68,6 +72,27 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract {
         define('SN', uniqid(rand(), true));
     }
 
+    //载入数据库ORM
+    public function _initDatabase() {
+        $database = array(
+            'driver' => Config::$config['database']['dbtype'],
+            'host' => Config::$config['database']['host'],
+            'database' => Config::$config['database']['dbname'],
+            'username' => Config::$config['database']['username'],
+            'password' => Config::$config['database']['password'],
+            'charset' => Config::$config['database']['charset'],
+            'collation' => Config::$config['database']['collation'],
+            'prefix' => ''
+        );
+        $capsule = new Capsule;
+        // 创建链接
+        $capsule->addConnection($database);
+        // 设置全局静态可访问
+        $capsule->setAsGlobal();
+        // 启动Eloquent
+        $capsule->bootEloquent();
+    }
+    
 
 }
 

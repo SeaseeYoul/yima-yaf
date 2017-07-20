@@ -2,7 +2,10 @@
 
 class IndexController extends \Core_ApiBase  {
     public function indexAction() {
-        $this->getView()->display('index.html'); 
+        $mod = new UsersModel(); 
+        $data = $mod::find(5);
+        var_dump($data->uid);die;
+//         $this->getView()->display('index.html'); 
     }
     public function upAction(){
         if ($this->getRequest()->isPost()){
