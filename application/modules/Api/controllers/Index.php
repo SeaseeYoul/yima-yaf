@@ -5,7 +5,7 @@ class IndexController extends \Core_ApiBase  {
 //         $mod = new UsersModel(); 
 //         $data = $mod::find(5);
 //         var_dump($data->uid);die;
-echo '马德制杖';
+echo '马德制杖';die;
 //         $this->getView()->display('index.html'); 
     }
     public function upAction(){
