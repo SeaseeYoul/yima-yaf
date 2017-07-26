@@ -8,8 +8,8 @@
  */
  
 Yaf_loader::import("/vendor/autoload.php");
-use Illuminate\Container\Container;
-use Illuminate\Database\Capsule\Manager as Capsule;
+use illuminate\container\Container;
+use illuminate\database\Capsule\Manager as Capsule;
 
 class Bootstrap extends \Yaf_Bootstrap_Abstract {
 
