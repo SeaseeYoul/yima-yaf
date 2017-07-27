@@ -2,12 +2,31 @@
 
 class IndexController extends \Core_ApiBase  {
     public function indexAction() {
-//         $mod = new UsersModel(); 
-//         $data = $mod::find(5);
-//         var_dump($data->uid);die;
-echo '马德制杖';die;
-//         $this->getView()->display('index.html'); 
+        $mod = new UsersModel(); 
+        for ($i=1;$i<1000;$i++){
+            $data = $mod::find(5);
+        }
+        
+        var_dump($data->uid);
+// $xhprof_data = xhprof_disable();
+// var_dump($xhprof_data);
+// die;
+        
+        $view = $this->getView();
+        $view->assign('foo',array(1,2,3,4));
+        $view->display('index/index.phtml');
     }
+    
+    public function testAction(){
+        $beanstalk = new Core_Beanstalk();
+        $beanstalk->connect();
+        $beanstalk->useTube( 'test' );
+        $id= $beanstalk->put( 1024,0,3600, json_encode(array('name'=>'test','info'=>'马德制杖')));
+        $beanstalk->disconnect();
+        echo $id;
+    }
+    
+    
     public function upAction(){
         if ($this->getRequest()->isPost()){
             $up = Files_ImageUpload::getInstance('Image');
