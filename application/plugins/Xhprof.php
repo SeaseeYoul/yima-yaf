@@ -21,12 +21,12 @@ class XhprofPlugin extends Yaf_Plugin_Abstract {
         include_once BASE_PATH . '/xhprof_lib/utils/xhprof_runs.php';
         // save raw data for this profiler run using default
         // implementation of iXHProfRuns.
-        $xhprof_runs = new XHProfRuns_Default();
+        $xhprof_runs = new XHProfRuns_Default('/wamp/www/tmp/');
 
         // save the run under a namespace "xhprof"
         $run_id = $xhprof_runs->save_run($xhprof_data, 'xhprof');
 
-        echo '<p><a href="http://xhprof/index.php?run='.$run_id.'&source=xhprof" target="_blank">Xhprof</a></p>';
+        echo '<p><a href="http://localhost/xhprof_html/index.php?run='.$run_id.'&source=xhprof" target="_blank">Xhprof</a></p>';
     }
 }
 

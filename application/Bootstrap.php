@@ -18,6 +18,7 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract {
     // 配置初始化
     public function _initConfig(\Yaf_Dispatcher $dispatcher) {
 		Config::load();
+		Yaf_Dispatcher::getInstance()->autoRender(FALSE);
     }
 
 
@@ -29,6 +30,7 @@ class Bootstrap extends \Yaf_Bootstrap_Abstract {
 
     // 注册插件
     public function _initPlugin(\Yaf_Dispatcher $dispatcher) {
+        
         // 初始化模版引擎 twig
         $Twig = new TwigPlugin();
         $dispatcher->registerPlugin($Twig);
