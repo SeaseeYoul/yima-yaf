@@ -15,6 +15,7 @@ class IndexController extends \Core_ApiBase  {
     }
     
     public function test_beanstalk(){
+        echo '进入计划任务';
         $beanstalk = new Core_Beanstalk();
         $beanstalk->connect();
         $beanstalk->watch( 'test' );
