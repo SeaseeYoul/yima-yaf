@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+{% for value in foo %}
+    {{ value }}
+{% endfor %}
+<form id="tf">
+            <input type="file" name="img"/>
+            <input type="text" name="username"/>
+            <input type="button" value="提交" onclick="test();"/>
+ </form>
+<script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	        function test(){
+            var form = new FormData(document.getElementById("tf"));
+//             var req = new XMLHttpRequest();
+//             req.open("post", "${pageContext.request.contextPath}/public/testupload", false);
+//             req.send(form);
+            $.ajax({
+                url:"/api/index/up",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(e){
+                    alert("错误！！");
+                    window.clearInterval(timer);
+                }
+            });        
+        }
+</script>
+</body>
+</html>
